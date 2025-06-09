@@ -1,0 +1,73 @@
+<div class="modal-overlay" (click)="handleCloseModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Search Pokemon</h2>
+    <div class="search-bar">
+      <div class="search-input-container">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Enter Pokemon name" (keyup.enter)="onSearch()">
+        <button class="search-icon-button" (click)="onSearch()">
+            <img src="assets/search.png" alt="Search"/>
+        </button>
+      </div>
+    </div>
+
+    <div class="search-results">
+      <p *ngIf="isLoading">Loading...</p>
+      <p *ngIf="!isLoading && hasSearched && searchResults.length === 0">No results found.</p>
+
+      <div *ngIf="!isLoading && searchResults.length > 0" class="search-results-grid">
+        <div *ngFor="let card of searchResults" class="search-result-card-row">
+          <div class="search-card-image-container">
+            <img [src]="card.imageUrl" [alt]="card.name" class="search-card-image"/>
+          </div>
+          <div class="search-card-details-main">
+            <div class="search-card-header-row">
+              <h3>{{ card.name }}</h3>
+              <button class="add-pokemon-button" (click)="selectPokemonAndClose(card)">Add</button>
+            </div>
+            <div class="search-stats-container-row">
+
+              <div class="search-stat-item-row">
+                <p class="search-stat-label-row">HP:</p>
+                <div class="search-stat-bar-container-row">
+                  <div class="search-stat-bar-fill hp-bar" [style.width.%]="card.calculatedHpLevel || 0">
+                    <span class="search-stat-value">{{ card.calculatedHpLevel || 0 }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="search-stat-item-row">
+                <p class="search-stat-label-row">STR:</p>
+                <div class="search-stat-bar-container-row">
+                  <div class="search-stat-bar-fill strength-bar" [style.width.%]="card.calculatedStrengthLevel || 0">
+                    <span class="search-stat-value">{{ card.calculatedStrengthLevel || 0 }}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="search-stat-item-row">
+                <p class="search-stat-label-row">WEAK:</p>
+                <div class="search-stat-bar-container-row">
+                  <div class="search-stat-bar-fill weakness-bar" [style.width.%]="card.calculatedWeaknessLevel || 0">
+                    <span class="search-stat-value">{{ card.calculatedWeaknessLevel || 0 }}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="search-stat-item-row">
+                <div class="search-happiness-smiley-container-row">
+                  <div class="search-smileys-row"> <img *ngFor="let i of getHappinessArray(card.calculatedHappinessLevel || 0)"
+                                src="assets/cute.png"
+                                alt="Happy"/>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="close-button" (click)="handleCloseModal()">Close</button>
+  </div>
+</div>

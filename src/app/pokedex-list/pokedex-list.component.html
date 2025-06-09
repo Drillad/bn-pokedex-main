@@ -1,0 +1,69 @@
+<div class="pokedex-container">
+  <h1>My Botnoi Pokédex</h1>
+
+  <div *ngIf="(pokedexCards$ | async) as cards">
+    <ng-container *ngIf="cards.length > 0; else noCards">
+      <div class="pokemon-cards-grid">
+        <div class="pokemon-card" *ngFor="let card of cards">
+          <img [src]="card.imageUrl" [alt]="card.name" class="card-image"/>
+          <div class="card-details">
+            <h2>{{ card.name }}</h2>
+            <div class="stat-group">
+              <div class="stat-item">
+                <p class="stat-label">HP:</p>
+                <div class="stat-bar-container">
+                  <div class="stat-bar-fill hp-bar" [style.width.%]="card.calculatedHpLevel || 0">
+                    <span class="stat-value">{{ card.calculatedHpLevel || 0 }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stat-item">
+                <p class="stat-label">Strength:</p>
+                <div class="stat-bar-container">
+                  <div class="stat-bar-fill strength-bar" [style.width.%]="card.calculatedStrengthLevel || 0">
+                    <span class="stat-value">{{ card.calculatedStrengthLevel || 0 }}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stat-item">
+                <p class="stat-label">Weakness:</p>
+                <div class="stat-bar-container">
+                  <div class="stat-bar-fill weakness-bar" [style.width.%]="card.calculatedWeaknessLevel || 0">
+                    <span class="stat-value">{{ card.calculatedWeaknessLevel || 0 }}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stat-item">
+                <div class="happiness-smiley-container">
+                  <img *ngFor="let i of getHappinessArray(card.calculatedHappinessLevel || 0)"
+                       src="assets/cute.png"
+                       alt="Happy"
+                       style="height: 16px; margin-right: 5px;"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="remove-x-button" (click)="removePokemon(card.id)">X</button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noCards>
+      <p class="no-cards-message">Your Pokédex is currently empty. Click "Add" below to get started!</p>
+    </ng-template>
+  </div>
+</div>
+
+<div class="bottom-nav-bar">
+  <button class="add-button-circle" (click)="openSearchModal()">
+    <span class="plus-icon">+</span>
+  </button>
+</div>
+
+<app-pokemon-search-modal
+  *ngIf="showSearchModal"
+  (closeModal)="closeSearchModal()"
+  (pokemonSelected)="onPokemonSelectedForPokedex($event)"
+></app-pokemon-search-modal>

@@ -1,0 +1,108 @@
+/* src/app/pokedex-list/pokedex-list.component.scss */
+
+.pokedex-container {
+  padding: 20px;
+  max-width: 1024px; /* iPad screen width */
+  min-height: 768px; /* iPad screen height, adjust as needed for content */
+  margin: 0 auto; /* Center the container */
+  box-sizing: border-box; /* Include padding in the width */
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.pokedex-actions {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 12px 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.pokemon-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust card width as needed */
+  gap: 20px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.pokemon-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.2s ease;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 10px;
+  border: 2px solid #eee;
+  border-radius: 5px;
+}
+
+.card-details h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.card-details p {
+  font-size: 0.95em;
+  color: #555;
+  margin: 5px 0;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  margin-top: 15px;
+  padding: 8px 15px;
+  font-size: 16px;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+.no-cards-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #777;
+  padding: 50px;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  margin-top: 40px;
+}

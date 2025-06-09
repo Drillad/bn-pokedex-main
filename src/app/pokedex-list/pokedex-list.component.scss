@@ -1,0 +1,244 @@
+/* Overall Page / Body adjustments for fixed iPad size */
+body, html {
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden;  Keep this if you want to prevent scrolling outside the iPad frame */
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  min-height: 100vh;      
+  background-color: #f0f0f0; /* Light background for visibility */
+}
+
+.pokedex-container {
+  width: 1024px;
+  height: 768px;
+  max-width: 1024px;
+  max-height: 768px;
+
+  /* Basic styling for the container */
+  background-color: #e0e0e0;
+  border: 10px solid #a0a0a0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; 
+  position: relative;
+  padding-bottom: 90px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.pokemon-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.pokemon-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background-color: #f3f4f7;
+  box-shadow: 0 2px 4px #d5d6dc;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: auto;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+}
+
+.pokemon-card:hover {
+  box-shadow: 0 4px 8px #aeaeae;
+}
+
+.card-image {
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.card-details {
+  flex-grow: 1;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 150px;
+  margin-bottom: 0;
+}
+
+.card-details h2 {
+  font-size: 1.1em;
+  margin-top: 0;
+  margin-bottom: 3px;
+  color: #333;
+  text-align: left;
+  line-height: 1.2;
+}
+
+/* --- Styling for Stat Bars --- */
+.stat-group {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  height: 18px;
+  font-size: 0.8em;
+  color: #555;
+}
+
+.stat-label {
+  width: 60px;
+  text-align: left;
+  margin-right: 5px;
+  font-weight: bold;
+  line-height: 1;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.stat-bar-container {
+  flex-grow: 1;
+  height: 12px;
+  background-color: #e4e4e4;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 2px #d4d4d4;
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background-color: #1a70f3;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: bold;
+  transition: width 0.5s ease-out;
+  min-width: 15px;
+  font-size: 0.7em;
+}
+
+/* --- Styling for Happiness Smiley Faces --- */
+.happiness-smiley-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-top: 0;
+  height: auto;
+}
+
+.happiness-smiley-container img {
+  height: 14px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+/* Styles for the X remove button */
+.remove-x-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.remove-x-button:hover {
+  background-color: #c82333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.no-cards-message {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* --- MODIFIED STYLES FOR THE BOTTOM ADD BUTTON AND BAR --- */
+
+/* Styles for the new bottom navigation bar */
+.bottom-nav-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  height: 60px;
+  background-color: #7777dc; 
+  display: flex;
+  justify-content: center; 
+  align-items: flex-end; 
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Styles for the circular Add button */
+.add-button-circle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #7777dc; 
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease, transform 0.1s ease;
+
+  /* --- MODIFIED: Move the button up from the bottom of the bar --- */
+  transform: translateY(-20px); 
+}
+
+.add-button-circle:hover {
+  background-color: #5656ec;
+  transform: translateY(-22px);
+}
+
+.add-button-circle:active {
+  transform: translateY(-20px); /* Resets on click */
+}
+
+.plus-icon {
+  line-height: 1;
+  margin-top: -2px;
+}

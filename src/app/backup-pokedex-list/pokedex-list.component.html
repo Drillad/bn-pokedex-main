@@ -1,0 +1,35 @@
+<div class="pokedex-container">
+  <h1>My Botnoi Pokédex</h1>
+
+  <div class="pokedex-actions">
+    <button (click)="openSearchModal()">Add New Pokémon</button>
+  </div>
+
+  <div *ngIf="(pokedexCards$ | async) as cards">
+    <ng-container *ngIf="cards.length > 0; else noCards">
+      <div class="pokemon-cards-grid">
+        <div class="pokemon-card" *ngFor="let card of cards">
+          <img [src]="card.imageUrl" [alt]="card.name" class="card-image">
+          <div class="card-details">
+            <h2>{{ card.name }}</h2>
+            <p>HP: {{ card.hp }} (Level: {{ card.calculatedHpLevel || 0 }})</p>
+            <p>Strength: {{ card.calculatedStrengthLevel || 0 }}%</p>
+            <p>Weakness: {{ card.calculatedWeaknessLevel || 0 }}%</p>
+            <p>Happiness: {{ card.calculatedHappinessLevel || 0 }}</p>
+            <button class="remove-button" (click)="removePokemon(card.id)">Remove</button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noCards>
+      <p class="no-cards-message">Your Pokédex is currently empty. Click "Add New Pokémon" to get started!</p>
+    </ng-template>
+  </div>
+</div>
+
+<app-pokemon-search-modal
+  *ngIf="showSearchModal"          
+  [isOpen]="showSearchModal"       
+  (close)="closeSearchModal()"     
+  (pokemonSelected)="onPokemonSelectedForPokedex($event)">
+</app-pokemon-search-modal>

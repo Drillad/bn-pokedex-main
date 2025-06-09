@@ -1,0 +1,256 @@
+/* src/app/pokemon-search-modal/pokemon-search-modal.component.scss */
+
+/* The overlay that covers the entire screen */
+.modal-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
+/* The actual modal content box */
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  width: 80%; 
+  max-width: 600px; 
+  max-height: 90vh; 
+  overflow-y: auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center; 
+}
+
+.search-input-container {
+  position: relative; /* Essential for positioning the icon inside */
+  width: 100%; 
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 8px 10px;
+  padding-right: 40px; /* Make space for the icon on the right */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.search-icon-button {
+  position: absolute; /* Position relative to .search-input-container */
+  right: 5px; 
+  top: 50%; 
+  transform: translateY(-50%);
+  background: none; /* Remove button background */
+  border: none; /* Remove button border */
+  cursor: pointer;
+  padding: 0; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  height: 100%; 
+}
+
+.search-icon-button img {
+  height: 20px; 
+  width: auto; 
+}
+
+.search-icon-button:hover {
+  opacity: 0.8;
+}
+
+.search-results {
+  flex-grow: 1; 
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto; 
+  padding-right: 10px; 
+  box-sizing: border-box;
+}
+
+.search-results-grid {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 10px; 
+}
+
+.search-result-card-row {
+  display: flex; 
+  align-items: center; 
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background-color 0.2s ease;
+}
+
+.search-result-card-row:hover {
+  background-color: #f0f0f0;
+}
+
+.search-card-image-container {
+  margin-right: 10px; 
+  align-items: center;
+  justify-content: center;
+}
+
+.search-card-image {
+  width: 60px; /* Smaller image size for search results */
+  height: 60px;
+  object-fit: contain;
+}
+
+.search-card-details-main {
+  flex-grow: 1; 
+  flex-direction: column; 
+  justify-content: center;
+  min-width: 0; 
+}
+
+.search-card-header-row {
+  display: flex;
+  justify-content: space-between; /* Push name to left, button to right */
+  align-items: center; 
+  margin-bottom: 5px; 
+}
+
+.search-card-details-main h3 {
+  font-size: 1.1em;
+  margin: 0;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+}
+
+.search-stats-container-row {
+  display: flex;
+  flex-direction: column; 
+  gap: 0px; 
+}
+
+.search-stat-item-row {
+  display: flex;
+  align-items: center;
+  font-size: 0.75em; 
+  color: #555;
+  height: 16px; 
+}
+
+.search-stat-label-row {
+  width: 40px; 
+  text-align: left; 
+  margin-right: 5px; 
+  font-weight: bold;
+  line-height: 1; 
+  padding-top: 1px; 
+  padding-bottom: 1px; 
+}
+
+.search-stat-bar-container-row {
+  flex-grow: 1;
+  height: 10px; 
+  background-color: #e4e4e4;
+  border-radius: 5px; 
+  box-shadow: inset 0 1px 2px #d4d4d4;
+  overflow: hidden;
+  position: relative;
+}
+
+.search-stat-bar-fill {
+  height: 100%;
+  background-color: #1a70f3;
+  border-radius: 5px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: bold;
+  transition: width 0.5s ease-out;
+  min-width: 10px;
+  font-size: 0.6em; 
+}
+
+.search-happiness-smiley-container-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; 
+  height: auto; 
+  margin-left: 0; /* This should be handled by the .search-stat-item-row flex */
+}
+
+.search-smileys-row { /* This is the container for the actual images */
+  display: flex;
+  flex-wrap: wrap; 
+  align-items: center;
+  flex-grow: 1; 
+  margin-left: 45px; 
+}
+
+
+.search-happiness-smiley-container-row img {
+  height: 12px; /* Adjusted smiley size for modal */
+  margin-right: 1px; 
+  margin-bottom: 1px; 
+}
+
+.add-pokemon-button {
+  background: none; 
+  border: none; 
+  padding: 0; /* Remove padding to make it text-only */
+  font-size: 1em; 
+  color: #007bff; 
+  font-family: "Atma", cursive;  
+  cursor: pointer;
+  white-space: nowrap; 
+  text-decoration: none;
+  transition: color 0.3s ease; 
+}
+
+.add-pokemon-button:hover {
+  color: #0056b3;
+  text-decoration: underline; 
+}
+
+.close-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  align-self: center;
+}
+
+.close-button:hover {
+  background-color: #5a6268;
+}
